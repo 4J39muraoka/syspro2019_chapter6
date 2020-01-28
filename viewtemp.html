@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<script type=text/javascript>
+		function tmpapi(){
+			let request = new XMLHttpRequest();
+			request.open('GET', 'http://192.168.137.197:5000/api_get', true);
+			request.responseType = 'json';
+			
+			request.onload = function(){
+				let data = this.response;
+				console.log(data);
+				document.getElementById('hum').textContent = "hum:"+data['hum'];
+				document.getElementById('pres').textContent = "pres:"+data['pres'];
+				document.getElementById('temp').textContent = "temp:"+data['temp'];
+				document.getElementById('time').textContent = "time:"+data['time'];
+			};
+
+			request.send();
+		}
+		</script>
+		<input type='button' value='Measurement' onClick="tmpapi()" />
+		<div id='hum'>hum:</div>
+		<div id='pres'>pres:</div>
+		<div id='temp'>temp:</div>
+		<div id='time'>time:</div>
+	</body>
